@@ -14,6 +14,12 @@ async function bootstrap() {
   const documentFactory = () => SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, documentFactory);
 
+  app.enableCors({
+    origin: ['https://zungzen.click','https://recruitment.io.vn' ],// Specify the allowed domain
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true, // Allow credentials (cookies, authorization headers)
+  });
+
   await app.listen(process.env.PORT ?? 4000);
 }
 bootstrap();
