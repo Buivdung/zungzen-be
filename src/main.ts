@@ -12,13 +12,15 @@ async function bootstrap() {
     .addTag('DŨng')
     .build();
   const documentFactory = () => SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, documentFactory);
+  SwaggerModule.setup('swagger', app, documentFactory);
 
   app.enableCors({
     origin: ['https://zungzen.click','https://recruitment.io.vn' ],// Specify the allowed domain
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true, // Allow credentials (cookies, authorization headers)
   });
+
+  app.setGlobalPrefix('api');
 
   await app.listen(process.env.PORT ?? 4000);
 }
